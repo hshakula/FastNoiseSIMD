@@ -156,89 +156,108 @@ public:
 	// Sets frequency for all noise types
 	// Default: 0.01
 	void SetFrequency(float frequency) { m_frequency = frequency; }
+	float GetFrequency() const { return m_frequency; }
 
 	// Sets noise return type of (Get/Fill)NoiseSet()
 	// Default: Simplex
 	void SetNoiseType(NoiseType noiseType) { m_noiseType = noiseType; }
+	NoiseType GetNoiseType() const { return m_noiseType; }
 
 	// Sets scaling factor for individual axis
 	// Defaults: 1.0
 	void SetAxisScales(float xScale, float yScale, float zScale) { m_xScale = xScale; m_yScale = yScale; m_zScale = zScale; }
-
+	void GetAxisScales(float* xScale, float* yScale, float* zScale) const { *xScale = m_xScale; *yScale = m_yScale; *zScale = m_zScale; }
 
 	// Sets octave count for all fractal noise types
 	// Default: 3
 	void SetFractalOctaves(int octaves) { m_octaves = octaves; m_fractalBounding = CalculateFractalBounding(m_octaves, m_gain);	}
+	int GetFractalOctaves() const { return m_octaves; }
 
 	// Sets octave lacunarity for all fractal noise types
 	// Default: 2.0
 	void SetFractalLacunarity(float lacunarity) { m_lacunarity = lacunarity; }
+	float GetFractalLacunarity() const { return m_lacunarity; }
 
 	// Sets octave gain for all fractal noise types
 	// Default: 0.5
 	void SetFractalGain(float gain) { m_gain = gain; m_fractalBounding = CalculateFractalBounding(m_octaves, m_gain); }
+	float GetFractalGain() const { return m_gain; }
 
 	// Sets method for combining octaves in all fractal noise types
 	// Default: FBM
 	void SetFractalType(FractalType fractalType) { m_fractalType = fractalType; }
+	FractalType GetFractalType() const { return m_fractalType; }
 
 
 	// Sets return type from cellular noise calculations
 	// Default: Distance
 	void SetCellularReturnType(CellularReturnType cellularReturnType) { m_cellularReturnType = cellularReturnType; }
+	CellularReturnType GetCellularReturnType() const { return m_cellularReturnType; }
 
 	// Sets distance function used in cellular noise calculations
 	// Default: Euclidean
 	void SetCellularDistanceFunction(CellularDistanceFunction cellularDistanceFunction) { m_cellularDistanceFunction = cellularDistanceFunction; }
+	CellularDistanceFunction GetCellularDistanceFunction() const { return m_cellularDistanceFunction; }
 
 	// Sets the type of noise used if cellular return type is set the NoiseLookup
 	// Default: Simplex
 	void SetCellularNoiseLookupType(NoiseType cellularNoiseLookupType) { m_cellularNoiseLookupType = cellularNoiseLookupType; }
+	NoiseType GetCellularNoiseLookupType() const { return m_cellularNoiseLookupType; }
 
 	// Sets relative frequency on the cellular noise lookup return type
 	// Default: 0.2
 	void SetCellularNoiseLookupFrequency(float cellularNoiseLookupFrequency) { m_cellularNoiseLookupFrequency = cellularNoiseLookupFrequency; }
+	float GetCellularNoiseLookupFrequency() const { return m_cellularNoiseLookupFrequency; }
 
 	// Sets the 2 distance indicies used for distance2 return types
 	// Default: 0, 1
 	// Note: index0 should be lower than index1
 	// Both indicies must be >= 0, index1 must be < 4
 	void SetCellularDistance2Indicies(int cellularDistanceIndex0, int cellularDistanceIndex1);
+	void GetCellularDistance2Indicies(int* cellularDistanceIndex0, int* cellularDistanceIndex1) const { *cellularDistanceIndex0 = m_cellularDistanceIndex0; *cellularDistanceIndex1 = m_cellularDistanceIndex1; }
 
 	// Sets the maximum distance a cellular point can move from it's grid position
 	// Setting this high will make artifacts more common
 	// Default: 0.45
 	void SetCellularJitter(float cellularJitter) { m_cellularJitter = cellularJitter; }
+	float GetCellularJitter() const { return m_cellularJitter; }
 
 
 	// Enables position perturbing for all noise types
 	// Default: None
 	void SetPerturbType(PerturbType perturbType) { m_perturbType = perturbType; }
+	PerturbType GetPerturbType() const { return m_perturbType; }
 
 	// Sets the maximum distance the input position can be perturbed
 	// Default: 1.0
 	void SetPerturbAmp(float perturbAmp) { m_perturbAmp = perturbAmp / 511.5f; }
+	float GetPerturbAmp() const { return m_perturbAmp * 511.5f; }
 
 	// Set the relative frequency for the perturb gradient
 	// Default: 0.5
 	void SetPerturbFrequency(float perturbFrequency) { m_perturbFrequency = perturbFrequency; }
+	float GetPerturbFrequency() const { return m_perturbFrequency; }
 
 
 	// Sets octave count for perturb fractal types
 	// Default: 3
 	void SetPerturbFractalOctaves(int perturbOctaves) { m_perturbOctaves = perturbOctaves; m_perturbFractalBounding = CalculateFractalBounding(m_perturbOctaves, m_perturbGain); }
+	int GetPerturbFractalOctaves() const { return m_perturbOctaves; }
 
 	// Sets octave lacunarity for perturb fractal types 
 	// Default: 2.0
 	void SetPerturbFractalLacunarity(float perturbLacunarity) { m_perturbLacunarity = perturbLacunarity; }
+	float GetPerturbFractalLacunarity() const { return m_perturbLacunarity; }
 	
 	// Sets octave gain for perturb fractal types 
 	// Default: 0.5
 	void SetPerturbFractalGain(float perturbGain) { m_perturbGain = perturbGain; m_perturbFractalBounding = CalculateFractalBounding(m_perturbOctaves, m_perturbGain);	}
+	float GetPerturbFractalGain() const { return m_perturbGain; }
 
 	// Sets the length for vectors after perturb normalising 
 	// Default: 1.0
 	void SetPerturbNormaliseLength(float perturbNormaliseLength) { m_perturbNormaliseLength = perturbNormaliseLength; }
+	float GetPerturbNormaliseLength() const { return m_perturbNormaliseLength; }
 
 
 	static FastNoiseVectorSet* GetVectorSet(int xSize, int ySize, int zSize);
